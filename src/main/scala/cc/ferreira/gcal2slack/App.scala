@@ -7,10 +7,8 @@ trait Services {
   def messaging: MessagingClient = ???
 }
 
-trait Commands { this: App with Services =>
-  def run(): Unit = ()
+trait Commands { this: Services =>
+  def main(args: Array[String]): Unit = ()
 }
 
-object App extends App with Commands with Services {
-  run()
-}
+object App extends Commands with Services

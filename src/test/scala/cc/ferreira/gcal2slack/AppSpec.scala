@@ -28,9 +28,8 @@ class AppSpec extends BaseSpec {
       override val messaging: MessagingClient = messagingMock
     }
 
-    object TestApp extends App with Commands with Mocks {
-      run()
-    }
+    object TestApp extends Commands with Mocks
+
   }
 
 }
