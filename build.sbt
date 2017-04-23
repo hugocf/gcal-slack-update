@@ -11,4 +11,5 @@ scalacOptions ++= Seq(
 
 libraryDependencies ++= Seq(
   "org.scalatest" %% "scalatest" % "3.0.1" % Test withSources(),
-  "org.scalacheck" %% "scalacheck" % "1.13.4" % Test withSources())
+  "org.scalacheck" %% "scalacheck" % "1.13.4" % Test withSources(),
+  "org.mockito" % "mockito-core" % "2.7.22" % Test withSources())
