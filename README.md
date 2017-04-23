@@ -25,11 +25,11 @@ rules = [
 
 
 
-| Field          | Description                              | Maps to…                     |
+| Configurations | Description                              | Maps to…                     |
 | -------------- | ---------------------------------------- | ---------------------------- |
-| `match-text`   | Case insensitive string which can appear anywhere in the searched field | Google Calendar: Event Title |
-| `status-emoji` | The symbol to display as the status      | Slack: Status Emoji          |
-| `status-text`  | The status’ description (can also contain emojis) | Slack: Status Text           |
+| `match-text`   | Case insensitive string which can appear anywhere in the searched field | **Google Calendar**: Event Title |
+| `status-emoji` | The symbol to display as the status      | **Slack**: Status Emoji          |
+| `status-text`  | The status’ description (can also contain emojis) | **Slack**: Status Text           |
 
 
 
