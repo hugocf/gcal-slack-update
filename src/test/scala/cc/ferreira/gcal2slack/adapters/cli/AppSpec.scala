@@ -1,5 +1,6 @@
-package cc.ferreira.gcal2slack
+package cc.ferreira.gcal2slack.adapters.cli
 
+import cc.ferreira.gcal2slack.BaseSpec
 import cc.ferreira.gcal2slack.core.{CalendarClient, CalendarEvent, MessagingClient, MessagingStatus}
 import org.mockito.ArgumentMatchers.any
 import org.mockito.Mockito._
