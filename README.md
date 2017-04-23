@@ -1,3 +1,6 @@
+[![status](https://img.shields.io/badge/status-dev%20(wip)-red.svg)](#)
+[![version](https://img.shields.io/badge/version-%C2%AF%5C__(%E3%83%84)__%2F%C2%AF-red.svg)](../../releases)
+
 # Gcal ➔ Slack
 
 `gcal-slack-update` automatically changes your status in multiple Slack teams, depending on the _current_ event in your Google Calendar.
