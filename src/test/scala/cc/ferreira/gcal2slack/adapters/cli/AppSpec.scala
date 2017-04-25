@@ -2,7 +2,6 @@ package cc.ferreira.gcal2slack.adapters.cli
 
 import cc.ferreira.gcal2slack.BaseSpec
 import cc.ferreira.gcal2slack.core.{CalendarClient, CalendarEvent, MessagingClient, MessagingStatus}
-import org.mockito.ArgumentMatchers.any
 import org.mockito.Mockito._
 
 class AppSpec extends BaseSpec {
@@ -10,7 +9,7 @@ class AppSpec extends BaseSpec {
   "App" - {
     "should update the status when the current event matches the rules" is pendingUntilFixed { new Context {
       val args = Array(resourcePath("rules.conf"))
-      when(calendarMock.getCurrentEvents(any())) thenReturn Seq(CalendarEvent("This is a matching test"))
+      when(calendarMock.getCurrentEvents) thenReturn Seq(CalendarEvent("This is a matching test"))
 
       TestApp.main(args)
 

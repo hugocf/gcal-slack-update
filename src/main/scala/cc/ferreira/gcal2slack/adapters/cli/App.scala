@@ -9,7 +9,7 @@ trait Services {
 
 trait Commands { this: Services =>
   def main(args: Array[String]): Unit =
-    ActionSetStatusFromCalendarEvent(Seq.empty[MappingRule], calendar, messaging)
+    ActionSetStatusFromCalendarEvent(calendar, messaging).execute(Seq.empty[MappingRule])
 }
 
 object App extends Commands with Services
