@@ -4,10 +4,7 @@ organization := "hugocf"
 scalaVersion := "2.12.2"
 scalacOptions ++= Seq(
   "-deprecation",
-  "-feature",
-  "-language:implicitConversions",
-  "-language:higherKinds",
-  "-language:postfixOps")
+  "-feature") // https://blog.threatstack.com/useful-scala-compiler-options-part-2-advanced-language-features
 
 libraryDependencies ++= Seq(
   "org.scalatest" %% "scalatest" % "3.0.1" % Test withSources(),
