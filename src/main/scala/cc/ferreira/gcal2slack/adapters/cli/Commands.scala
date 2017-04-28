@@ -8,6 +8,6 @@ trait Commands {
 
   def main(args: Array[String]): Unit = {
     val rules = Seq.empty[MappingRule]
-    chooseStatus(calendar.getCurrentEvents, rules).foreach(messaging.updateStatus)
+    chooseStatus(calendar.getTodayEvents, rules).foreach(messaging.updateStatus)
   }
 }
