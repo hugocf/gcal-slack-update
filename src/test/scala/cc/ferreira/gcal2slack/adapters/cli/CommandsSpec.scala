@@ -8,7 +8,7 @@ class CommandsSpec extends BaseSpec {
   "main" - {
     "should update the status when the current event matches the rules" is pendingUntilFixed { new Context {
       val args = Array(resourcePath("rules.conf"))
-      when(calendarMock.getTodayEvents) thenReturn Seq(CalendarEvent("This is a matching test"))
+      //when(calendarMock.getTodayEvents) thenReturn Seq(CalendarEvent("This is a matching test"))
 
       TestApp.main(args)
 

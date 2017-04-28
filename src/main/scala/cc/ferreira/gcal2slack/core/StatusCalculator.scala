@@ -1,7 +1,10 @@
 package cc.ferreira.gcal2slack.core
 
+import java.time.LocalDateTime
+import java.time.LocalDateTime._
+
 object StatusCalculator {
-  def chooseStatus(events: Seq[CalendarEvent], rules: Seq[MappingRule]): Option[MessagingStatus] = {
+  def chooseStatus(events: Seq[CalendarEvent], rules: Seq[MappingRule], time: LocalDateTime = now): Option[MessagingStatus] = {
     Some(MessagingStatus(":smile", "ok"))
   }
 }

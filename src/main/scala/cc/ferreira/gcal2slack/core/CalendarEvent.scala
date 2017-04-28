@@ -1,3 +1,5 @@
 package cc.ferreira.gcal2slack.core
 
-case class CalendarEvent(title: String)
+import java.time.LocalDateTime
+
+case class CalendarEvent(title: String, start: LocalDateTime, end: LocalDateTime)

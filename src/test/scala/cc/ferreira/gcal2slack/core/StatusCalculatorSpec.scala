@@ -1,16 +1,28 @@
 package cc.ferreira.gcal2slack.core
 
+import java.time.{LocalDate, LocalDateTime}
+
 import cc.ferreira.gcal2slack.BaseSpec
 
 class StatusCalculatorSpec extends BaseSpec {
-  "chooseStatus" - {
-    "should set the status when the rules matches the active event title" in {
-      val rules = Seq(MappingRule("matching test", ":smile", "ok"))
-      val events = Seq(CalendarEvent("This is a matching test"))
 
-      val result = StatusCalculator.chooseStatus(events, rules)
+  "chooseStatus" - {
+    "should return the status when a rule matches the current event title" in {
+      val rules = Seq(MappingRule("matching test", ":smile", "ok"))
+      val events = Seq(CalendarEvent("This is a matching test", t.oneHourAgo, t.oneHourAfter))
+
+      val result = StatusCalculator.chooseStatus(events, rules, t.now)
 
       result.value shouldBe MessagingStatus(":smile", "ok")
     }
+
   }
+
+  private object t {
+    val today: LocalDate = LocalDate.now
+    val now: LocalDateTime = today.atTime(13, 0)
+    val oneHourAgo: LocalDateTime = now.minusHours(1)
+    val oneHourAfter: LocalDateTime = now.plusHours(1)
+  }
+
 }
