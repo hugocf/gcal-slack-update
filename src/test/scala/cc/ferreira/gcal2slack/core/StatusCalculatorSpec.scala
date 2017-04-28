@@ -17,6 +17,22 @@ class StatusCalculatorSpec extends BaseSpec {
       result.value shouldBe MessagingStatus(":smile:", "ok")
     }
 
+    "should return the status when a rule matches the begin of the current event title" in {
+      val events = Seq(CalendarEvent("This is a matching test", t.oneHourAgo, t.oneHourAfter))
+
+      val result = StatusCalculator.chooseStatus(events, rules, t.oneHourAgo)
+
+      result.value shouldBe MessagingStatus(":smile:", "ok")
+    }
+
+    "should return the status when a rule matches the end of the current event title" in {
+      val events = Seq(CalendarEvent("This is a matching test", t.oneHourAgo, t.oneHourAfter))
+
+      val result = StatusCalculator.chooseStatus(events, rules, t.oneHourAfter)
+
+      result.value shouldBe MessagingStatus(":smile:", "ok")
+    }
+
     "should ignore the status when the matching event is not current" in {
       val events = Seq(CalendarEvent("This is a matching test", t.twoHoursAgo, t.oneHourAgo))
 
