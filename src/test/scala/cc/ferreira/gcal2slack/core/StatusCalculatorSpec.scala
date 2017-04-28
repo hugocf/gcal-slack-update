@@ -8,11 +8,11 @@ class StatusCalculatorSpec extends BaseSpec {
   import StatusCalculator._
 
   "chooseStatus" - {
-    val rules = Seq(MappingRule("matching test", ":smile:", "ok"))
-    val expectedStatus = MessagingStatus(":smile:", "ok")
 
     "when there is a single matching event" - {
       val events = Seq(CalendarEvent("This is a matching test", t.oneHourAgo, t.oneHourAfter))
+      val rules = Seq(MappingRule("matching test", ":smile:", "ok"))
+      val expectedStatus = MessagingStatus(":smile:", "ok")
 
       "should return the status" - {
         "while the event is in progress" in {
@@ -25,6 +25,13 @@ class StatusCalculatorSpec extends BaseSpec {
 
         "at the time the event ends" in {
           chooseStatus(events, rules, t.oneHourAfter).value shouldBe expectedStatus
+        }
+
+        "corresponding to the first matching rule" in {
+          val otherRule = MappingRule("matching test", ":one:", "first!")
+          val firstStatus = MessagingStatus(":one:", "first!")
+
+          chooseStatus(events, otherRule +: rules, t.oneHourAfter).value shouldBe firstStatus
         }
       }
 

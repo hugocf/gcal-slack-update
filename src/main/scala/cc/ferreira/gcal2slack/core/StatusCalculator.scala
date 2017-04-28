@@ -6,7 +6,7 @@ import java.time.LocalDateTime._
 object StatusCalculator {
   def chooseStatus(events: Seq[CalendarEvent], rules: Seq[MappingRule], time: LocalDateTime = now): Option[MessagingStatus] = {
     if (events.head.contains(time))
-      Some(MessagingStatus(":smile:", "ok"))
+      rules.find(r => events.head.title.contains(r.matchText)).map(MessagingStatus(_))
     else
       None
   }
