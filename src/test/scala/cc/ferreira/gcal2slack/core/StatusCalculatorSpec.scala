@@ -5,49 +5,47 @@ import java.time.{LocalDate, LocalDateTime}
 import cc.ferreira.gcal2slack.BaseSpec
 
 class StatusCalculatorSpec extends BaseSpec {
+  import StatusCalculator._
 
   "chooseStatus" - {
     val rules = Seq(MappingRule("matching test", ":smile:", "ok"))
+    val expectedStatus = MessagingStatus(":smile:", "ok")
 
-    "should return the status when a rule matches the current event title" in {
+    "when there is a single matching event" - {
       val events = Seq(CalendarEvent("This is a matching test", t.oneHourAgo, t.oneHourAfter))
 
-      val result = StatusCalculator.chooseStatus(events, rules, t.now)
+      "should return the status" - {
+        "while the event is in progress" in {
+          chooseStatus(events, rules, t.now).value shouldBe expectedStatus
+        }
 
-      result.value shouldBe MessagingStatus(":smile:", "ok")
+        "at the time the event begins" in {
+          chooseStatus(events, rules, t.oneHourAgo).value shouldBe expectedStatus
+        }
+
+        "at the time the event ends" in {
+          chooseStatus(events, rules, t.oneHourAfter).value shouldBe expectedStatus
+        }
+      }
+
+      "should ignore the status" - {
+        "when the event is not current" in {
+          chooseStatus(events, rules, t.twoHoursAfter) shouldBe None
+        }
+      }
     }
 
-    "should return the status when a rule matches the begin of the current event title" in {
-      val events = Seq(CalendarEvent("This is a matching test", t.oneHourAgo, t.oneHourAfter))
+    "when there are multiple matching events" - {
 
-      val result = StatusCalculator.chooseStatus(events, rules, t.oneHourAgo)
-
-      result.value shouldBe MessagingStatus(":smile:", "ok")
-    }
-
-    "should return the status when a rule matches the end of the current event title" in {
-      val events = Seq(CalendarEvent("This is a matching test", t.oneHourAgo, t.oneHourAfter))
-
-      val result = StatusCalculator.chooseStatus(events, rules, t.oneHourAfter)
-
-      result.value shouldBe MessagingStatus(":smile:", "ok")
-    }
-
-    "should ignore the status when the matching event is not current" in {
-      val events = Seq(CalendarEvent("This is a matching test", t.twoHoursAgo, t.oneHourAgo))
-
-      val result = StatusCalculator.chooseStatus(events, rules, t.now)
-
-      result shouldBe None
     }
   }
 
   private object t {
     val today: LocalDate = LocalDate.now
     val now: LocalDateTime = today.atTime(13, 0)
-    val twoHoursAgo: LocalDateTime = now.minusHours(2)
     val oneHourAgo: LocalDateTime = now.minusHours(1)
     val oneHourAfter: LocalDateTime = now.plusHours(1)
+    val twoHoursAfter: LocalDateTime = now.plusHours(2)
   }
 
 }
