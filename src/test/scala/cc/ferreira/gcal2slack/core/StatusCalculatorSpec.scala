@@ -60,8 +60,8 @@ class StatusCalculatorSpec extends BaseSpec {
 
         "matching the first current event if all start at the same time" in {
           val events = Seq(
-            CalendarEvent("Matching test A", t.now, t.inOneHour),
-            CalendarEvent("Matching test B", t.now, t.inTwoHours))
+            CalendarEvent("Matching test A", t.now, t.inTwoHours),
+            CalendarEvent("Matching test B", t.now, t.inOneHour))
 
           chooseStatus(events, rules, t.now).value shouldBe statusA
         }
