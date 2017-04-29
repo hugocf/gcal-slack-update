@@ -65,6 +65,14 @@ class StatusCalculatorSpec extends BaseSpec {
 
           chooseStatus(events, rules, t.now).value shouldBe statusA
         }
+
+        "matching the first regular event if there are all-day events" in {
+          val events = Seq(
+            CalendarEvent("Matching test A", t.startDay, t.endDay, allDay = true),
+            CalendarEvent("Matching test B", t.startDay, t.inOneHour))
+
+          chooseStatus(events, rules, t.now).value shouldBe statusB
+        }
       }
 
       "should ignore the status" - {
@@ -82,11 +90,13 @@ class StatusCalculatorSpec extends BaseSpec {
   private object t {
     val today: LocalDate = LocalDate.now
     val now: LocalDateTime = today.atTime(13, 0)
+    val startDay: LocalDateTime = today.atStartOfDay
     val twoHoursAgo: LocalDateTime = now.minusHours(2)
     val oneHourAgo: LocalDateTime = now.minusHours(1)
     val inOneHour: LocalDateTime = now.plusHours(1)
     val inTwoHours: LocalDateTime = now.plusHours(2)
     val lateHours: LocalDateTime = today.atTime(22, 0)
+    val endDay: LocalDateTime = startDay.plusDays(1)
   }
 
 }
