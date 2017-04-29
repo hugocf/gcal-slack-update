@@ -44,33 +44,33 @@ class StatusCalculatorSpec extends BaseSpec {
 
     "when there are multiple matching events" - {
       val rules = Seq(
-        MappingRule("test one", ":one:", "1!"),
-        MappingRule("test two", ":two:", "2!"))
-      val statusOne = MessagingStatus(":one:", "1!")
-      val statusTwo = MessagingStatus(":two:", "2!")
+        MappingRule("test A", ":alpha:", "A"),
+        MappingRule("test B", ":beta:", "B"))
+      val statusA = MessagingStatus(":alpha:", "A")
+      val statusB = MessagingStatus(":beta:", "B")
 
       "should return the status" - {
         "matching the current event with the closest start time" in {
           val events = Seq(
-            CalendarEvent("Matching test two", t.twoHoursAgo, t.inTwoHours),
-            CalendarEvent("Matching test one", t.oneHourAgo, t.inOneHour))
+            CalendarEvent("Matching test A", t.twoHoursAgo, t.now),
+            CalendarEvent("Matching test B", t.oneHourAgo, t.now))
 
-          chooseStatus(events, rules, t.now).value shouldBe statusOne
+          chooseStatus(events, rules, t.now).value shouldBe statusB
         }
 
         "matching the first current event if all start at the same time" in {
           val events = Seq(
-            CalendarEvent("Matching test two", t.now, t.inTwoHours),
-            CalendarEvent("Matching test one", t.now, t.inOneHour))
+            CalendarEvent("Matching test A", t.now, t.inOneHour),
+            CalendarEvent("Matching test B", t.now, t.inTwoHours))
 
-          chooseStatus(events, rules, t.now).value shouldBe statusTwo
+          chooseStatus(events, rules, t.now).value shouldBe statusA
         }
       }
 
       "should ignore the status" - {
         val events = Seq(
-          CalendarEvent("Matching test two", t.twoHoursAgo, t.inTwoHours),
-          CalendarEvent("Matching test one", t.oneHourAgo, t.inOneHour))
+          CalendarEvent("Matching test A", t.oneHourAgo, t.inOneHour),
+          CalendarEvent("Matching test B", t.twoHoursAgo, t.inTwoHours))
 
         "when none of the events are current" in {
           chooseStatus(events, rules, t.lateHours) shouldBe None
