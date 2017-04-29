@@ -43,21 +43,35 @@ class StatusCalculatorSpec extends BaseSpec {
     }
 
     "when there are multiple matching events" - {
-      val events = Seq(
-        CalendarEvent("Two hours ago matching test", t.twoHoursAgo, t.twoHoursAfter),
-        CalendarEvent("One hour ago matching test", t.oneHourAgo, t.oneHourAfter))
       val rules = Seq(
-        MappingRule("Two hour", ":two:", "2h"),
-        MappingRule("One hour", ":one:", "1h"))
-      val statusOne = MessagingStatus(":one:", "1h")
+        MappingRule("test one", ":one:", "1!"),
+        MappingRule("test two", ":two:", "2!"))
+      val statusOne = MessagingStatus(":one:", "1!")
+      val statusTwo = MessagingStatus(":two:", "2!")
 
       "should return the status" - {
         "matching the current event with the closest start time" in {
+          val events = Seq(
+            CalendarEvent("Matching test two", t.twoHoursAgo, t.twoHoursAfter),
+            CalendarEvent("Matching test one", t.oneHourAgo, t.oneHourAfter))
+
           chooseStatus(events, rules, t.now).value shouldBe statusOne
+        }
+
+        "matching the first current event if all start at the same time" in {
+          val events = Seq(
+            CalendarEvent("Matching test two", t.now, t.twoHoursAfter),
+            CalendarEvent("Matching test one", t.now, t.oneHourAfter))
+
+          chooseStatus(events, rules, t.now).value shouldBe statusTwo
         }
       }
 
       "should ignore the status" - {
+        val events = Seq(
+          CalendarEvent("Matching test two", t.twoHoursAgo, t.twoHoursAfter),
+          CalendarEvent("Matching test one", t.oneHourAgo, t.oneHourAfter))
+
         "when none of the events are current" in {
           chooseStatus(events, rules, t.lateHours) shouldBe None
         }
