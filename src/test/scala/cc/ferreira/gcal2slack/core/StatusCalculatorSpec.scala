@@ -68,7 +68,7 @@ class StatusCalculatorSpec extends BaseSpec {
 
         "matching the first regular event if there are all-day events" in {
           val events = Seq(
-            CalendarEvent("Matching test A", t.startDay, t.endDay, allDay = true),
+            CalendarEvent("Matching test A", t.today),
             CalendarEvent("Matching test B", t.startDay, t.inOneHour))
 
           chooseStatus(events, rules, t.now).value shouldBe statusB
@@ -88,7 +88,7 @@ class StatusCalculatorSpec extends BaseSpec {
 
     "when there’s a mix of matching and non-matching events" - {
       val events = Seq(
-        CalendarEvent("Test doesn't match", t.startDay, t.endDay, allDay = true),
+        CalendarEvent("Test doesn't match", t.today),
         CalendarEvent("Test doesn't match", t.twoHoursAgo, t.inTwoHours),
         CalendarEvent("Matching test A", t.oneHourAgo, t.inOneHour))
       val rules = Seq(MappingRule("test A", ":alpha:", "A"))
@@ -101,7 +101,7 @@ class StatusCalculatorSpec extends BaseSpec {
 
     "when no event matches" - {
       val events = Seq(
-        CalendarEvent("Test doesn't match", t.startDay, t.endDay, allDay = true),
+        CalendarEvent("Test doesn't match", t.today),
         CalendarEvent("Test doesn't match", t.twoHoursAgo, t.inTwoHours))
       val rules = Seq(MappingRule("test A", ":alpha:", "A"))
 
@@ -120,7 +120,6 @@ class StatusCalculatorSpec extends BaseSpec {
     val inOneHour: LocalDateTime = now.plusHours(1)
     val inTwoHours: LocalDateTime = now.plusHours(2)
     val lateHours: LocalDateTime = today.atTime(22, 0)
-    val endDay: LocalDateTime = startDay.plusDays(1)
   }
 
 }
