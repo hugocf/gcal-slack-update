@@ -3,11 +3,11 @@ package cc.ferreira.gcal2slack.core
 import java.time.{LocalDate, LocalDateTime}
 
 // Disallow direct access to the primary constructor: allDay is set only from the companion object
-case class CalendarEvent private (title: String, start: LocalDateTime, end: LocalDateTime, allDay: Boolean) {
-  require(start.compareTo(end) <= 0, s"Invalid event interval from $start to $end")
+case class CalendarEvent private (title: String, begin: LocalDateTime, end: LocalDateTime, allDay: Boolean) {
+  require(begin.compareTo(end) <= 0, s"Invalid event interval from $begin to $end")
 
   def contains(time: LocalDateTime): Boolean =
-    start.isEqual(time) || start.isBefore(time) && end.isAfter(time) || end.isEqual(time)
+    begin.isEqual(time) || begin.isBefore(time) && end.isAfter(time) || end.isEqual(time)
 
   def contains(text: String): Boolean = title.contains(text)
 }

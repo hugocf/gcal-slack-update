@@ -25,12 +25,12 @@ class CalendarEventSpec extends BaseSpec {
     "should return false" - {
       "for simple regular events" in {
         val allDay = CalendarEvent("test", t.minusHours(1), t.plusHours(1))
-        CalendarEvent("test", allDay.start, allDay.end) should not be 'allDay
+        CalendarEvent("test", allDay.begin, allDay.end) should not be 'allDay
       }
 
       "for regular events spanning an entire day" in {
         val allDay = CalendarEvent("test", t.toLocalDate)
-        CalendarEvent("test", allDay.start, allDay.end) should not be 'allDay
+        CalendarEvent("test", allDay.begin, allDay.end) should not be 'allDay
       }
     }
   }

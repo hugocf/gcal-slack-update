@@ -11,7 +11,7 @@ object StatusCalculator {
 
     events
       .filter(_.contains(time))
-      .sortBy(e => distance(e.start, time))
+      .sortBy(e => distance(e.begin, time))
       .sortBy(_.allDay)   // false < true
       .flatMap(e => rules.find(r => e.contains(r.matchText)))
       .headOption
