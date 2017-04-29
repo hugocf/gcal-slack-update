@@ -85,6 +85,30 @@ class StatusCalculatorSpec extends BaseSpec {
         }
       }
     }
+
+    "when there’s a mix of matching and non-matching events" - {
+      val events = Seq(
+        CalendarEvent("Test doesn't match", t.startDay, t.endDay, allDay = true),
+        CalendarEvent("Test doesn't match", t.twoHoursAgo, t.inTwoHours),
+        CalendarEvent("Matching test A", t.oneHourAgo, t.inOneHour))
+      val rules = Seq(MappingRule("test A", ":alpha:", "A"))
+      val statusA = MessagingStatus(":alpha:", "A")
+
+      "should ignore the non-matching events" in {
+        chooseStatus(events, rules, t.now).value shouldBe statusA
+      }
+    }
+
+    "when no event matches" - {
+      val events = Seq(
+        CalendarEvent("Test doesn't match", t.startDay, t.endDay, allDay = true),
+        CalendarEvent("Test doesn't match", t.twoHoursAgo, t.inTwoHours))
+      val rules = Seq(MappingRule("test A", ":alpha:", "A"))
+
+      "should ignore the status" in {
+        chooseStatus(events, rules, t.now) shouldBe None
+      }
+    }
   }
 
   private object t {
