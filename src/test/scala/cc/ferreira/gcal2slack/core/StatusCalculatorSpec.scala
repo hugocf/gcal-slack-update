@@ -37,22 +37,42 @@ class StatusCalculatorSpec extends BaseSpec {
 
       "should ignore the status" - {
         "when the event is not current" in {
-          chooseStatus(events, rules, t.twoHoursAfter) shouldBe None
+          chooseStatus(events, rules, t.lateHours) shouldBe None
         }
       }
     }
 
     "when there are multiple matching events" - {
+      val events = Seq(
+        CalendarEvent("Two hours ago matching test", t.twoHoursAgo, t.twoHoursAfter),
+        CalendarEvent("One hour ago matching test", t.oneHourAgo, t.oneHourAfter))
+      val rules = Seq(
+        MappingRule("Two hour", ":two:", "2h"),
+        MappingRule("One hour", ":one:", "1h"))
+      val statusOne = MessagingStatus(":one:", "1h")
 
+      "should return the status" - {
+        "matching the current event with the closest start time" in {
+          chooseStatus(events, rules, t.now).value shouldBe statusOne
+        }
+      }
+
+      "should ignore the status" - {
+        "when none of the events are current" in {
+          chooseStatus(events, rules, t.lateHours) shouldBe None
+        }
+      }
     }
   }
 
   private object t {
     val today: LocalDate = LocalDate.now
     val now: LocalDateTime = today.atTime(13, 0)
+    val twoHoursAgo: LocalDateTime = now.minusHours(2)
     val oneHourAgo: LocalDateTime = now.minusHours(1)
     val oneHourAfter: LocalDateTime = now.plusHours(1)
     val twoHoursAfter: LocalDateTime = now.plusHours(2)
+    val lateHours: LocalDateTime = today.atTime(22, 0)
   }
 
 }
