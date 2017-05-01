@@ -1,5 +1,6 @@
 package cc.ferreira.gcal2slack.core
 
+import java.time.temporal.ChronoUnit._
 import java.time.{LocalDate, LocalDateTime}
 
 import cc.ferreira.gcal2slack.BaseSpec
@@ -115,10 +116,10 @@ class StatusCalculatorSpec extends BaseSpec {
     val today: LocalDate = LocalDate.now
     val now: LocalDateTime = today.atTime(13, 0)
     val startDay: LocalDateTime = today.atStartOfDay
-    val twoHoursAgo: LocalDateTime = now.minusHours(2)
-    val oneHourAgo: LocalDateTime = now.minusHours(1)
-    val inOneHour: LocalDateTime = now.plusHours(1)
-    val inTwoHours: LocalDateTime = now.plusHours(2)
+    val twoHoursAgo: LocalDateTime = now.minus(2, HOURS)
+    val oneHourAgo: LocalDateTime = now.minus(1, HOURS)
+    val inOneHour: LocalDateTime = now.plus(1, HOURS)
+    val inTwoHours: LocalDateTime = now.plus(2, HOURS)
     val lateHours: LocalDateTime = today.atTime(22, 0)
   }
 
