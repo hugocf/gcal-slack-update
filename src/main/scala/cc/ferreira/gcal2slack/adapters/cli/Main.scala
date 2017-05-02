@@ -9,7 +9,7 @@ import com.typesafe.config.{Config, ConfigFactory}
 import scala.collection.JavaConverters._
 import scala.util.Try
 
-trait Commands {
+trait Main {
   this: Services =>
 
   def main(args: Array[String]): Unit = {

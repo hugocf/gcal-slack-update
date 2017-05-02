@@ -7,7 +7,7 @@ import cc.ferreira.gcal2slack.BaseSpec
 import cc.ferreira.gcal2slack.core.{CalendarEvent, MessagingStatus}
 import org.mockito.Mockito._
 
-class CommandsSpec extends BaseSpec {
+class MainSpec extends BaseSpec {
 
   "main" - {
     "should update the status when the current event matches the rules" in new Context {
@@ -33,7 +33,7 @@ class CommandsSpec extends BaseSpec {
       override val messaging: MessagingClient = messagingMock
     }
 
-    object TestApp extends Commands with Mocks
+    object TestApp extends Main with Mocks
 
   }
 
