@@ -16,4 +16,3 @@ libraryDependencies ++= Seq(
 enablePlugins(BuildInfoPlugin)
 buildInfoKeys := Seq[BuildInfoKey](name, version, scalaVersion, sbtVersion)
 buildInfoOptions += BuildInfoOption.BuildTime
-buildInfoPackage := "cc.ferreira.gcal2slack"
