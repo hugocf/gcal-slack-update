@@ -3,6 +3,7 @@ package cc.ferreira.gcal2slack.core
 import java.time.LocalDateTime
 import java.time.LocalDateTime._
 import java.time.ZoneOffset.UTC
+import scala.collection.immutable.Seq
 
 object StatusCalculator {
   def chooseStatus(events: Seq[CalendarEvent], rules: Seq[MappingRule], time: LocalDateTime = now): Option[MessagingStatus] = {

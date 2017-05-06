@@ -11,8 +11,8 @@ class StatusCalculatorSpec extends BaseSpec {
   "chooseStatus" - {
 
     "when there is a single matching event" - {
-      val events = Seq(CalendarEvent("This is a matching test", t.oneHourAgo, t.inOneHour))
-      val rules = Seq(MappingRule("matching test", ":smile:", "ok"))
+      val events = List(CalendarEvent("This is a matching test", t.oneHourAgo, t.inOneHour))
+      val rules = List(MappingRule("matching test", ":smile:", "ok"))
       val statusSmile = MessagingStatus(":smile:", "ok")
 
       "should return the status" - {
@@ -44,7 +44,7 @@ class StatusCalculatorSpec extends BaseSpec {
     }
 
     "when there are multiple matching events" - {
-      val rules = Seq(
+      val rules = List(
         MappingRule("test A", ":alpha:", "A"),
         MappingRule("test B", ":beta:", "B"))
       val statusA = MessagingStatus(":alpha:", "A")
@@ -52,7 +52,7 @@ class StatusCalculatorSpec extends BaseSpec {
 
       "should return the status" - {
         "matching the current event with the closest start time" in {
-          val events = Seq(
+          val events = List(
             CalendarEvent("Matching test A", t.twoHoursAgo, t.now),
             CalendarEvent("Matching test B", t.oneHourAgo, t.now))
 
@@ -60,7 +60,7 @@ class StatusCalculatorSpec extends BaseSpec {
         }
 
         "matching the first current event if all start at the same time" in {
-          val events = Seq(
+          val events = List(
             CalendarEvent("Matching test A", t.now, t.inTwoHours),
             CalendarEvent("Matching test B", t.now, t.inOneHour))
 
@@ -68,7 +68,7 @@ class StatusCalculatorSpec extends BaseSpec {
         }
 
         "matching the first regular event if there are all-day events" in {
-          val events = Seq(
+          val events = List(
             CalendarEvent("Matching test A", t.today),
             CalendarEvent("Matching test B", t.startDay, t.inOneHour))
 
@@ -77,7 +77,7 @@ class StatusCalculatorSpec extends BaseSpec {
       }
 
       "should ignore the status" - {
-        val events = Seq(
+        val events = List(
           CalendarEvent("Matching test A", t.oneHourAgo, t.inOneHour),
           CalendarEvent("Matching test B", t.twoHoursAgo, t.inTwoHours))
 
@@ -88,11 +88,11 @@ class StatusCalculatorSpec extends BaseSpec {
     }
 
     "when there’s a mix of matching and non-matching events" - {
-      val events = Seq(
+      val events = List(
         CalendarEvent("Test doesn't match", t.today),
         CalendarEvent("Test doesn't match", t.twoHoursAgo, t.inTwoHours),
         CalendarEvent("Matching test A", t.oneHourAgo, t.inOneHour))
-      val rules = Seq(MappingRule("test A", ":alpha:", "A"))
+      val rules = List(MappingRule("test A", ":alpha:", "A"))
       val statusA = MessagingStatus(":alpha:", "A")
 
       "should ignore the non-matching events" in {
@@ -101,10 +101,10 @@ class StatusCalculatorSpec extends BaseSpec {
     }
 
     "when no event matches" - {
-      val events = Seq(
+      val events = List(
         CalendarEvent("Test doesn't match", t.today),
         CalendarEvent("Test doesn't match", t.twoHoursAgo, t.inTwoHours))
-      val rules = Seq(MappingRule("test A", ":alpha:", "A"))
+      val rules = List(MappingRule("test A", ":alpha:", "A"))
 
       "should ignore the status" in {
         chooseStatus(events, rules, t.now) shouldBe None

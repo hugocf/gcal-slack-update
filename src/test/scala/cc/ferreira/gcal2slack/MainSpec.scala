@@ -11,7 +11,7 @@ class MainSpec extends BaseSpec {
   "main" - {
     "should update the status when the current event matches the rules" in new Context {
       val args = Array(resourcePath("rules.conf"))
-      val events = Seq(CalendarEvent("A matching test", t.minus(1, HOURS), t.plus(1, HOURS)))
+      val events = List(CalendarEvent("A matching test", t.minus(1, HOURS), t.plus(1, HOURS)))
       when(calendarMock.getTodayEvents) thenReturn events
 
       TestApp.main(args)

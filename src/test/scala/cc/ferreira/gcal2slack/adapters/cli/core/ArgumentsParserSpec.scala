@@ -8,7 +8,7 @@ class ArgumentsParserSpec extends BaseSpec {
 
   "retrieveActions" - {
     "--help option should return a help action" in {
-      val args: Array[String] = Array("--help")
+      val args = List("--help")
 
       val result = ArgumentsParser.retrieveActions(args)
 
@@ -18,7 +18,7 @@ class ArgumentsParserSpec extends BaseSpec {
     }
 
     "--version option should return a version action" in {
-      val args: Array[String] = Array("--version")
+      val args = List("--version")
 
       val result = ArgumentsParser.retrieveActions(args)
 
