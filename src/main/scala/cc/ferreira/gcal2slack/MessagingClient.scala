@@ -1,4 +1,4 @@
-package cc.ferreira.gcal2slack.adapters.cli
+package cc.ferreira.gcal2slack
 
 import cc.ferreira.gcal2slack.core.MessagingStatus
 

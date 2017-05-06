@@ -1,10 +1,18 @@
 package cc.ferreira.gcal2slack
 
-import cc.ferreira.gcal2slack.adapters.cli.{CalendarClient, Main, MessagingClient, Services}
+import cc.ferreira.gcal2slack.adapters.cli.CommandLine
+import cc.ferreira.gcal2slack.core.{CalendarEvent, MessagingStatus, StatusCalculator}
 
-trait SlackAndGcal extends Services {
-  override val calendar: CalendarClient = ???
-  override val messaging: MessagingClient = ???
+trait Services {
+  val calendar: CalendarClient = new CalendarClient { override def getTodayEvents: Seq[CalendarEvent] = ??? }
+  val messaging: MessagingClient = new MessagingClient { override def updateStatus(status: MessagingStatus): Unit = ??? }
 }
 
-object App extends Main with SlackAndGcal
+trait Main {
+  this: Services =>
+
+  def main(args: Array[String]): Unit =
+    StatusCalculator.chooseStatus(calendar.getTodayEvents, CommandLine.parseRules(args)).foreach(messaging.updateStatus)
+}
+
+object App extends Main with Services

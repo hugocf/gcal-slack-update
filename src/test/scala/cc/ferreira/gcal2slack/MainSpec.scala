@@ -1,9 +1,8 @@
-package cc.ferreira.gcal2slack.adapters.cli
+package cc.ferreira.gcal2slack
 
 import java.time.LocalDateTime
 import java.time.temporal.ChronoUnit._
 
-import cc.ferreira.gcal2slack.BaseSpec
 import cc.ferreira.gcal2slack.core.{CalendarEvent, MessagingStatus}
 import org.mockito.Mockito._
 
