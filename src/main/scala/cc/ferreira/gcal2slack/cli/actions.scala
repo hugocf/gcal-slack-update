@@ -16,9 +16,10 @@ case object ShowHelp extends DisplayText {
       |Update your Slack status according to the current Google Calendar event.
       |
       |Usage:
-      |    scala -jar gcal-slack-update-cli.jar [options] filename
+      |    scala gcal-slack-update-cli.jar [options] filename
       |
       |    --help         Show this help message
+      |    --version      Show app version and build info
       |    filename       Path to file with mapping rules definitions (ex: rules.conf)
       |""".stripMargin
 }
