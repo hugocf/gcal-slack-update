@@ -1,4 +1,4 @@
-package cc.ferreira.gcal2slack.adapters.cli.core
+package cc.ferreira.gcal2slack.buildinfo
 
 import java.time.LocalDate
 

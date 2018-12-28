@@ -1,4 +1,4 @@
-package cc.ferreira.gcal2slack.core
+package cc.ferreira.gcal2slack.calendar
 
 import java.time.LocalDateTime
 
@@ -17,12 +17,12 @@ class CalendarEventSpec extends BaseSpec {
     }
   }
 
-  "allDay" - {
-    "should return true for all day events" in {
+  "all day property" - {
+    "should be true for all day events" in {
       CalendarEvent("test", t.toLocalDate) should be an 'allDay
     }
 
-    "should return false" - {
+    "should be false" - {
       "for simple regular events" in {
         val allDay = CalendarEvent("test", t.minusHours(1), t.plusHours(1))
         CalendarEvent("test", allDay.begin, allDay.end) should not be 'allDay

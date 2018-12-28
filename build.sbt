@@ -1,4 +1,4 @@
-name := "gcal-slack-update"
+name := "gcal-slack-update-cli"
 organization := "hugocf"
 
 scalaVersion := "2.12.2"

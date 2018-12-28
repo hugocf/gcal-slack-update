@@ -3,10 +3,12 @@ package cc.ferreira.gcal2slack
 import java.time.LocalDateTime
 import java.time.temporal.ChronoUnit._
 
-import cc.ferreira.gcal2slack.core.{CalendarEvent, MessagingStatus}
+import cc.ferreira.gcal2slack.calendar.{CalendarClient, CalendarEvent}
+import cc.ferreira.gcal2slack.messaging.{MessagingClient, MessagingStatus}
 import org.mockito.Mockito._
+import org.scalatest.mockito.MockitoSugar
 
-class MainSpec extends BaseSpec {
+class MainSpec extends BaseSpec with MockitoSugar {
 
   "main" - {
     "should update the status when the current event matches the rules" in new Context {

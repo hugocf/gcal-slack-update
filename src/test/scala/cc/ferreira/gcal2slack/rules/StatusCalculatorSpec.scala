@@ -1,14 +1,16 @@
-package cc.ferreira.gcal2slack.core
+package cc.ferreira.gcal2slack.rules
 
 import java.time.temporal.ChronoUnit._
 import java.time.{LocalDate, LocalDateTime}
 
 import cc.ferreira.gcal2slack.BaseSpec
+import cc.ferreira.gcal2slack.calendar.CalendarEvent
+import cc.ferreira.gcal2slack.messaging.MessagingStatus
 
 class StatusCalculatorSpec extends BaseSpec {
-  import StatusCalculator._
+  import cc.ferreira.gcal2slack.rules.StatusCalculator._
 
-  "chooseStatus" - {
+  "choosing a status" - {
 
     "when there is a single matching event" - {
       val events = List(CalendarEvent("This is a matching test", t.oneHourAgo, t.inOneHour))

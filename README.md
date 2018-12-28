@@ -5,9 +5,7 @@
 
 `gcal-slack-update` automatically changes your status in multiple Slack teams, depending on the _current_ event in your Google Calendar.
 
-It is designed to run periodically from a `cron` job ~~or triggered by a Scheduled Event in AWS Lambda~~.
-
-During each execution, it checks whether the current event *Title* in Google Calendar contains the `match-text` defined in the set of configuration rules received as input.
+It is designed to run periodically from a `cron` job and, during each execution, it checks whether the current event *Title* in Google Calendar contains the `match-text` defined in the set of configuration rules received as input.
 
 Example of an input `rules.conf` file:
 

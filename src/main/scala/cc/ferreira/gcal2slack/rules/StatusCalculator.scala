@@ -1,9 +1,11 @@
-package cc.ferreira.gcal2slack.core
+package cc.ferreira.gcal2slack.rules
 
 import java.time.LocalDateTime
-import java.time.LocalDateTime._
+import java.time.LocalDateTime.now
 import java.time.ZoneOffset.UTC
-import scala.collection.immutable.Seq
+
+import cc.ferreira.gcal2slack.calendar.CalendarEvent
+import cc.ferreira.gcal2slack.messaging.MessagingStatus
 
 object StatusCalculator {
   def chooseStatus(events: Seq[CalendarEvent], rules: Seq[MappingRule], time: LocalDateTime = now): Option[MessagingStatus] = {

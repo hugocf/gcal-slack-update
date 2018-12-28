@@ -1,9 +1,7 @@
-package cc.ferreira.gcal2slack.adapters.cli
+package cc.ferreira.gcal2slack.buildinfo
 
 import java.time.ZoneOffset.UTC
 import java.time.{LocalDate, LocalDateTime}
-
-import cc.ferreira.gcal2slack.adapters.cli.core.BuildInfo
 
 object CurrentBuild extends BuildInfo {
   val name: String = buildinfo.BuildInfo.name
