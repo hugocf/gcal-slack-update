@@ -21,7 +21,7 @@ class MainSpec extends BaseSpec with MockitoSugar {
 
       TestApp.processAction(action)
 
-      verify(messagingMock).updateStatus(MessagingStatus(":smile:", "ok!"))
+      verify(messagingMock).updateStatus(Some(MessagingStatus(":smile:", "ok!")))
     }
 
     "should display command line text actions" in new Context {
