@@ -45,13 +45,13 @@ class CommandLineSpec extends BaseSpec {
     }
 
     "rules file name should return an action to parse rules" in {
-      val args = List("rules.conf")
+      val args = List("rules-ok.conf")
 
       val result = CommandLine.parseActions(args)
 
       result should have size 1
       result.head shouldBe a[ReadFile]
-      result.head.asInstanceOf[ReadFile].value.getName shouldBe "rules.conf"
+      result.head.asInstanceOf[ReadFile].value.getName shouldBe "rules-ok.conf"
     }
   }
 
