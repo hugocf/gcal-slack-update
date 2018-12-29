@@ -1,5 +1,7 @@
 package cc.ferreira.gcal2slack.calendar
 
+import cc.ferreira.gcal2slack.app.Result
+
 trait CalendarClient {
-  def getTodayEvents: Seq[CalendarEvent]
+  def fetchTodayEvents(): Result[Seq[CalendarEvent]]
 }

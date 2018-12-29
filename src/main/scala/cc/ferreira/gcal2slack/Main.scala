@@ -13,10 +13,15 @@ trait Main {
       case a: DisplayText =>
         println(a.value)
       case f: ReadFile =>
-        val rules = MappingRule.fromConfigList(ConfigFactory.parseFile(f.value))
-        val events = calendar.getTodayEvents
-        val status = StatusCalculator.chooseStatus(events, rules)
-        status.foreach(messaging.updateStatus)
+        val status = for {
+          rules <- MappingRule.fromConfigList(ConfigFactory.parseFile(f.value))
+          events <- calendar.fetchTodayEvents()
+        } yield StatusCalculator.chooseStatus(events, rules)
+
+        status match {
+          case Left(e) => println(e.message)
+          case Right(s) => s.foreach(messaging.updateStatus)
+        }
     }
   }
 }

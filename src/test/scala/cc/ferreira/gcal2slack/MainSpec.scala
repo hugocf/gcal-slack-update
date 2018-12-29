@@ -14,7 +14,7 @@ class MainSpec extends BaseSpec with MockitoSugar {
     "should update the status when the current event matches the rules" in new Context {
       val args = Array(resourcePath("rules.conf"))
       val events = List(CalendarEvent("A matching test", t.minus(1, HOURS), t.plus(1, HOURS)))
-      when(calendarMock.getTodayEvents) thenReturn events
+      when(calendarMock.fetchTodayEvents()) thenReturn Right(events)
 
       TestApp.main(args)
 
