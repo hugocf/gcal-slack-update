@@ -1,7 +1,6 @@
 package cc.ferreira.gcal2slack.rules
 
-import cc.ferreira.gcal2slack.BaseSpec
-import cc.ferreira.gcal2slack.app.Error
+import cc.ferreira.gcal2slack.{BaseSpec, Error}
 import com.typesafe.config.ConfigFactory
 
 import scala.collection.JavaConverters._

@@ -1,10 +1,8 @@
-package cc.ferreira.gcal2slack
+package cc.ferreira
 
 import scala.util.Try
 
-object App extends Main with Services
-
-package object app {
+package object gcal2slack {
   type Result[T] = Either[Error, T]
 
   case class Error(message: String)

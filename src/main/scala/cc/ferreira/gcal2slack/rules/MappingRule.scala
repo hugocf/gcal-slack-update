@@ -3,7 +3,7 @@ package cc.ferreira.gcal2slack.rules
 import cats.instances.list._
 import cats.instances.try_._
 import cats.syntax.traverse._
-import cc.ferreira.gcal2slack.app._
+import cc.ferreira.gcal2slack.Result
 import com.typesafe.config.Config
 
 import scala.collection.JavaConverters._

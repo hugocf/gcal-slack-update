@@ -1,6 +1,5 @@
 package cc.ferreira.gcal2slack
 
-import cc.ferreira.gcal2slack.app.Result
 import cc.ferreira.gcal2slack.calendar.{CalendarClient, CalendarEvent}
 import cc.ferreira.gcal2slack.messaging.{MessagingClient, MessagingStatus}
 

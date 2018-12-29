@@ -4,7 +4,6 @@ import java.io.{ByteArrayOutputStream, File}
 import java.time.LocalDateTime
 import java.time.temporal.ChronoUnit.HOURS
 
-import cc.ferreira.gcal2slack.app.Error
 import cc.ferreira.gcal2slack.calendar.{CalendarClient, CalendarEvent}
 import cc.ferreira.gcal2slack.cli.{Action, ReadFile, ShowHelp}
 import cc.ferreira.gcal2slack.messaging.{MessagingClient, MessagingStatus}
