@@ -1,5 +1,6 @@
 name := "gcal-slack-update-cli"
 organization := "hugocf"
+maintainer := "hugo@ferreira.cc"
 
 scalaVersion := "2.12.2"
 
@@ -15,6 +16,7 @@ libraryDependencies ++= Seq(
   "org.scalacheck" %% "scalacheck" % "1.14.0" % Test withSources(),
   "org.mockito" % "mockito-core" % "2.23.4" % Test withSources())
 
+enablePlugins(JavaAppPackaging)
 enablePlugins(BuildInfoPlugin)
 buildInfoKeys := Seq[BuildInfoKey](name, version, scalaVersion, sbtVersion)
 buildInfoOptions += BuildInfoOption.BuildTime
