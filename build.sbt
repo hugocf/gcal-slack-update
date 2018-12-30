@@ -1,4 +1,4 @@
-name := "gcal-slack-update-cli"
+name := "gcal-slack-update"
 organization := "hugocf"
 maintainer := "hugo@ferreira.cc"
 

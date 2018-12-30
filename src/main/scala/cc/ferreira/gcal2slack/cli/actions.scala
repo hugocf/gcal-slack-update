@@ -16,7 +16,7 @@ case object ShowHelp extends DisplayText {
       |Update your Slack status according to the current Google Calendar event.
       |
       |Usage:
-      |    gcal-slack-update-cli [options] filename
+      |    gcal-slack-update [options] filename
       |
       |    --help         Show this help message
       |    --version      Show app version and build info

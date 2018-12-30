@@ -10,8 +10,7 @@ class ActionsSpec extends BaseSpec {
   "show help" in {
     val result = ShowHelp.value
 
-    result should include("gcal-slack-update-cli")
-    result should include("[options] filename")
+    result should include("gcal-slack-update [options] filename")
     result should include("--help")
     result should include("--version")
   }
