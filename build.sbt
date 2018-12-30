@@ -8,12 +8,12 @@ scalacOptions += "-feature" // https://blog.threatstack.com/useful-scala-compile
 scalacOptions += "-Ypartial-unification"  // https://typelevel.org/cats/
 
 libraryDependencies ++= Seq(
-  "com.typesafe" % "config" % "1.3.1",
+  "com.typesafe" % "config" % "1.3.3",
   "org.typelevel" %% "cats-core" % "1.5.0",
 
-  "org.scalatest" %% "scalatest" % "3.0.1" % Test withSources(),
-  "org.scalacheck" %% "scalacheck" % "1.13.4" % Test withSources(),
-  "org.mockito" % "mockito-core" % "2.7.22" % Test withSources())
+  "org.scalatest" %% "scalatest" % "3.0.5" % Test withSources(),
+  "org.scalacheck" %% "scalacheck" % "1.14.0" % Test withSources(),
+  "org.mockito" % "mockito-core" % "2.23.4" % Test withSources())
 
 enablePlugins(BuildInfoPlugin)
 buildInfoKeys := Seq[BuildInfoKey](name, version, scalaVersion, sbtVersion)
