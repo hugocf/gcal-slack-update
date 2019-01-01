@@ -21,5 +21,7 @@ buildInfoKeys := Seq[BuildInfoKey](name, version, scalaVersion, sbtVersion)
 buildInfoOptions += BuildInfoOption.BuildTime
 
 enablePlugins(JavaAppPackaging)
+mappings in Universal := (mappings in Universal).value.filter { case(jar, _) => !jar.getName.contains("scala-reflect") }
+
 ghreleaseAssets := Seq((packageBin in Universal).value)
 ghreleaseNotes := { tag => s"""See CHANGELOG [$tag](../master/CHANGELOG.md#${tag.stripPrefix("v")}) for details.""" }
