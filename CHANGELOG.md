@@ -36,6 +36,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 * Internal code structure and architecture, from “Ports and Adapters” to a more “Functional Core, Imperative Shell” approach
 
-[Unreleased]: https://github.com/user/repo/compare/v0.0.2...HEAD
+[Unreleased]: https://github.com/hugocf/gcal-slack-update/compare/v0.0.2...HEAD
 [0.0.2]: https://github.com/hugocf/gcal-slack-update/compare/v0.0.1...v0.0.2
 [0.0.1]: https://github.com/hugocf/gcal-slack-update/compare/908820d65d81bc11134ec7baa8e674a0d0896af5...v0.0.1
