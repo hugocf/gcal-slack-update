@@ -7,9 +7,9 @@
 
 It is designed to run periodically from a `cron` job and, during each execution, it checks whether the current event *Title* in Google Calendar contains the `match-text` defined in the set of configuration rules received as input.
 
-Example of an input `rules.conf` file:
+Example of an input file in `rules-example.conf`:
 
-```
+```ini
 rules = [
   {
     match-text = "testing this"
@@ -24,13 +24,19 @@ rules = [
 ]
 ```
 
-
-
 | Configurations | Description                              | Maps to…                     |
 | -------------- | ---------------------------------------- | ---------------------------- |
 | `match-text`   | Case insensitive string which can appear anywhere in the searched field | **Google Calendar**: Event Title |
 | `status-emoji` | The symbol to display as the status      | **Slack**: Status Emoji          |
 | `status-text`  | The status’ description (can also contain emojis) | **Slack**: Status Text           |
+
+Authentication is read from a file named `auth.conf` (see example in `auth-example.conf`):
+
+```ini
+slack-token = "xoxp-legacy-token"
+```
+
+To generate such a token, go to the [legacy tokens](https://api.slack.com/custom-integrations/legacy-tokens#legacy-info) Slack page of the workspace where you wish to update the status.
 
 
 

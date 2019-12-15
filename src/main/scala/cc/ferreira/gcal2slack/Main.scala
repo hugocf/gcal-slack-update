@@ -5,7 +5,6 @@ import java.io.File
 import cc.ferreira.gcal2slack.buildinfo.CurrentBuild
 import cc.ferreira.gcal2slack.cli._
 import cc.ferreira.gcal2slack.rules.{MappingRule, StatusCalculator}
-import com.typesafe.config.{Config, ConfigFactory}
 
 trait Main {
   this: Services =>
@@ -21,8 +20,8 @@ trait Main {
 
     def processRules(file: File): Unit = {
       val result = for {
-        config <- fetchConfig(file)
-        rules <- MappingRule.fromConfigList(config)
+        specs <- Settings.fetchConfig(file)
+        rules <- MappingRule.fromConfigList(specs)
         events <- calendar.fetchTodayEvents()
         status <- Right(StatusCalculator.chooseStatus(events, rules))
         _ <- messaging.updateStatus(status)
@@ -30,9 +29,6 @@ trait Main {
 
       result.left.foreach(e => println(s"Error: ${e.message}"))
     }
-
-    def fetchConfig(file: File): Result[Config] =
-      Either.cond(file.exists, ConfigFactory.parseFile(file), Error(s"File '$file' does not exist"))
   }
 
 }

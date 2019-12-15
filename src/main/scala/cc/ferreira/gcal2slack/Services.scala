@@ -1,9 +1,10 @@
 package cc.ferreira.gcal2slack
 
-import cc.ferreira.gcal2slack.calendar.{CalendarClient, CalendarEvent}
-import cc.ferreira.gcal2slack.messaging.{MessagingClient, MessagingStatus}
+import cc.ferreira.gcal2slack.adapters.{GcalClient, SlackClient}
+import cc.ferreira.gcal2slack.calendar.CalendarClient
+import cc.ferreira.gcal2slack.messaging.MessagingClient
 
 trait Services {
-  val calendar: CalendarClient = new CalendarClient { override def fetchTodayEvents(): Result[Seq[CalendarEvent]] = ??? }
-  val messaging: MessagingClient = new MessagingClient { override def updateStatus(status: Option[MessagingStatus]): Result[Unit] = ??? }
+  val calendar: CalendarClient = new GcalClient
+  val messaging: MessagingClient = SlackClient(Tokens.slackToken)
 }
