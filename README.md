@@ -42,9 +42,11 @@ To generate such a token, go to the [legacy tokens](https://api.slack.com/custom
 
 ## Local Installation
 
-* [ ] Where’s the latest release?
-* [ ] Set ENV_VAR for Google Calendar access
-* [ ] Set ENV_VAR for Slack access…
+* [ ] Get latest release from the repo [releases page](https://github.com/hugocf/gcal-slack-update/releases) and unzip it to some location
+* [ ] Make sure the execution script has execute permissions: `chmod a+x bin/gcal-slack-update`
+* [ ] Copy file [`auth-example.conf`](https://github.com/hugocf/gcal-slack-update/blob/master/auth-example.conf) into `auth.conf` and update with your [token for Slack](https://api.slack.com/custom-integrations/legacy-tokens#legacy-info)
+* [ ] Copy file  to [`rules.conf`](https://github.com/hugocf/gcal-slack-update/blob/master/rules-example.conf) and customise it to your needs, as you prefer
+* [ ] Periodically run the command `./bin/gcal-slack-update rules.conf` with the frequency you wish to update status
 
 
 
@@ -54,5 +56,6 @@ To generate such a token, go to the [legacy tokens](https://api.slack.com/custom
 - [ ] Support multiple Google Calendars?
 - [ ] Search for matches in other event fields? (e.g. description, location)
 - [ ] Support regex patterns to match events?
+- [ ] Configure `sbt-native-packager` to ensure that the universal script files in `./bin` have execute permissions
 
 
